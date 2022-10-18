@@ -5,7 +5,12 @@ import React from "react";
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <Button variant="outlined" onClick={() => loginWithRedirect()}>
+    <Button
+      variant="outlined"
+      color="primary"
+      sx={{ width: "150px" }}
+      onClick={() => loginWithRedirect()}
+    >
       Log In
     </Button>
   );
