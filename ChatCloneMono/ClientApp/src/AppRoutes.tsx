@@ -1,15 +1,17 @@
 import React from "react";
-import Home from "./components/Home";
-import Test from "./components/Test";
+import Home from "./pages/Home";
+import Test from "./pages/Test";
 
 const AppRoutes = [
   {
     index: true,
+    path: "/home",
     element: <Home />,
   },
   {
     index: true,
-    Element: <Test />,
+    path: "/test",
+    element: <Test />,
   },
 ];
 
