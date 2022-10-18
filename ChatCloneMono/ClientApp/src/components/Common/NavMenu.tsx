@@ -40,7 +40,7 @@ const NavMenu = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} className="text-dark" to="/counter">
+              <NavLink tag={Link} className="text-dark" to="/home">
                 Counter
               </NavLink>
             </NavItem>

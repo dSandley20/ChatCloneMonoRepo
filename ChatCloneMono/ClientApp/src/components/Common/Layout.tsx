@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "reactstrap";
-import NavMenu from "./NavMenu";
+import NavBar from "./NavBar";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ const Layout = (props: LayoutProps) => {
 
   return (
     <div>
-      <NavMenu />
+      <NavBar />
       <Container>{children}</Container>
     </div>
   );
