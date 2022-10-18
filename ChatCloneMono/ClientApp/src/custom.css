@@ -13,3 +13,7 @@ code {
   border-color: #1861ac;
 }
 
+body {
+  background-image: linear-gradient( #353535, black);
+  height: 100%
+}
