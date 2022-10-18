@@ -6,6 +6,7 @@ export interface IUserContext {
   setAuthStatus: (data: boolean) => void;
   user: null | IViewableUser | undefined;
   saveUser: (data: IViewableUser) => void;
+  getUserName: () => string;
 }
 
 const UserContext = createContext<IUserContext>({
@@ -13,6 +14,9 @@ const UserContext = createContext<IUserContext>({
   setAuthStatus(data) {},
   user: null,
   saveUser(data) {},
+  getUserName() {
+    return "";
+  },
 });
 
 export default UserContext;
@@ -29,8 +33,14 @@ const UserProvider = ({ children }) => {
     setUser(data);
   };
 
+  const getUserName = () => {
+    return `${user?.first_name} ${user?.last_name} `;
+  };
+
   return (
-    <UserContext.Provider value={{ user, saveUser, isAuth, setAuthStatus }}>
+    <UserContext.Provider
+      value={{ user, saveUser, isAuth, setAuthStatus, getUserName }}
+    >
       {children}
     </UserContext.Provider>
   );
