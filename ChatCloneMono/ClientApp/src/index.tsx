@@ -8,7 +8,8 @@ import App from "./App";
 import { UserProvider } from "./context/UserContext";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-
+import {Provider} from 'react-redux'
+import store from './redux/store'
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = createRoot(rootElement);
 const queryClient = new QueryClient();
@@ -20,11 +21,13 @@ root.render(
     redirectUri={window.location.origin}
   >
     <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
       <UserProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </UserProvider>
+      </Provider>
     </QueryClientProvider>
   </Auth0Provider>
 );

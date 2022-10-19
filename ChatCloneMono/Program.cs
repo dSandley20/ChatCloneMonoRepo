@@ -50,6 +50,7 @@ builder.Services.AddAuthorization(options =>
 //Add Singletons
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<IServerRepository, ServerRepository>();
 
 var app = builder.Build();
 

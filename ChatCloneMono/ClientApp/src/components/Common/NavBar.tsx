@@ -4,6 +4,7 @@ import {
   Box,
   Drawer,
   IconButton,
+  makeStyles,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -22,7 +23,7 @@ const NavBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ zIndex: 1400, position: 'relative' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -31,7 +32,7 @@ const NavBar = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
             onClick={() => {
-              toggleDrawer(true);
+              toggleDrawer(!isDrawerOpen);
             }}
           >
             <MenuIcon />
@@ -43,12 +44,16 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <Drawer
+        variant="persistent"
         anchor="left"
         open={isDrawerOpen}
+        hideBackdrop
         onClose={() => {
           toggleDrawer(false);
         }}
+
       >
+        <Toolbar />
         <DrawerContent
           handlerFunction={() => {
             //toggleDrawer(false);

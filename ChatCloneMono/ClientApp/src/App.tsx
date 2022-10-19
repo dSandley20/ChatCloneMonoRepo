@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useMemo, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, } from "react-router-dom";
 import { setToken } from "./api/Api";
 import AppRoutes from "./AppRoutes";
 import Layout from "./components/Common/Layout";
@@ -17,6 +17,7 @@ const AuthRoutes = () => {
           const { element, ...rest } = route;
           return <Route key={index} {...rest} element={element} />;
         })}
+
       </Routes>
     </Layout>
   );
@@ -41,7 +42,7 @@ const LoadingRoutes = () => {
 const App = () => {
   // const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const { user, setAuthStatus, isAuth } = useUserContext();
+  const { setAuthStatus, isAuth } = useUserContext();
   const navigate = useNavigate();
   // const { data } = useGetUser();
 
@@ -56,7 +57,7 @@ const App = () => {
     }
     if (isAuth) {
       setRoutes(<AuthRoutes />);
-      navigate("/home");
+      navigate("/server/3");
     } else if (!isAuth) {
       console.log("hello?");
       setRoutes(<DefaultRoutes />);

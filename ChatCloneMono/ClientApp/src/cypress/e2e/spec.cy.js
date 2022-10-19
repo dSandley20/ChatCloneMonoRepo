@@ -9,8 +9,6 @@ describe("empty spec", () => {
 describe("Example Test Creating A User", () => {
   it("Valid Creation Data", () => {
     cy.visit("https://localhost:44458/")
-      .get('[data-cy="createUpdateUser"]')
-      .click()
       .get('[data-cy="firstNameField"]')
       .type("Jason")
       .get('[data-cy="lastNameField"]')
@@ -34,8 +32,6 @@ describe("Example Test Creating A User", () => {
 
   it("Invalid Creation Data (invalid pw)", () => {
     cy.visit("https://localhost:44458/")
-      .get('[data-cy="createUpdateUser"]')
-      .click()
       .get('[data-cy="firstNameField"]')
       .type("Jason")
       .get('[data-cy="lastNameField"]')

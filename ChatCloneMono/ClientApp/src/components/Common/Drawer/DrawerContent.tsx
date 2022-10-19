@@ -1,5 +1,6 @@
 import { Box, List } from "@mui/material";
 import React, { useState } from "react";
+import { useAppSelector } from "../../../hooks/reduxHooks";
 import CollapseDrawerList from "./CollapseDrawerList";
 
 interface DrawerContentProps {
@@ -11,52 +12,11 @@ const DrawerContent = (props: DrawerContentProps) => {
 
   const [isServerListOpen, setServerListOpen] = useState(false);
   const [isMessageListOpen, setMessageListOpen] = useState(false);
+  const data = useAppSelector((state) => state.servers.servers)
 
-  const data = {
-    documents: [
-      {
-        Id: 0,
-        Name: "Category 1",
-        Sheets: [
-          {
-            Id: 1,
-            Title: "Title1 ",
-          },
-          {
-            Id: 2,
-            Title: "Title 2",
-          },
-          {
-            Id: 3,
-            Title: "Title 3",
-          },
-        ],
-      },
-      {
-        Id: 1,
-        Name: "Category 2",
-        Sheets: [
-          {
-            Id: 4,
-            Title: "Title4 ",
-          },
-          {
-            Id: 5,
-            Title: "Title 5",
-          },
-          {
-            Id: 6,
-            Title: "Title 6",
-          },
-        ],
-      },
-    ],
-  };
-  console.log(data.documents);
   return (
     <Box
       sx={{ width: 250 }}
-      role="presentation"
       onClick={() => {
         handlerFunction(false);
       }}
@@ -67,16 +27,16 @@ const DrawerContent = (props: DrawerContentProps) => {
             setServerListOpen(!isServerListOpen);
           }}
           isOpen={isServerListOpen}
-          key={data.documents[0].Id}
-          data={data.documents[0]}
+          key={data[0].Id}
+          data={data[0]}
         />
         <CollapseDrawerList
           openHandler={() => {
             setMessageListOpen(!isMessageListOpen);
           }}
           isOpen={isMessageListOpen}
-          key={data.documents[1].Id}
-          data={data.documents[1]}
+          key={data[1].Id}
+          data={data[1]}
         />
       </List>
     </Box>

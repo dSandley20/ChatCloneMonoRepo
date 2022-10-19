@@ -24,7 +24,6 @@ const CollapseDrawerList = (props: CollapseDrawerListProps) => {
         button
         key={data.Id}
         onClick={() => {
-          console.log("hi?");
           openHandler();
         }}
       >
@@ -34,7 +33,6 @@ const CollapseDrawerList = (props: CollapseDrawerListProps) => {
       <Collapse key={data.Sheets.Id} in={isOpen} timeout="auto">
         <List component="li" key={data.Id} sx={{ maxHeight: "400px" }}>
           {data.Sheets.map((sheet) => {
-            console.log(sheet);
             return (
               <ListItem button key={sheet.Id}>
                 <ListItemIcon>
