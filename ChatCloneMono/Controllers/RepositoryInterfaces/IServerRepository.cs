@@ -6,6 +6,6 @@ namespace ChatCloneMono.Controllers.RepositoryInterfaces
     {
         public void CreateServer(CreateServerDto serverDetails, int userId);
         public ServerListItemDto GetServer(int serverId);
-        public IEnumerable<ServerListItemDto> GetServers();
+        public IEnumerable<ServerListItemDto> GetServers(int userId);
     }
 }

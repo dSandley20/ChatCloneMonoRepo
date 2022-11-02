@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string ServerName { get; set; }
-
+        public User Creator { get; set; }
     }
 }

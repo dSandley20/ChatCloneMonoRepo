@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Stack } from "@mui/material";
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { setToken } from "../api/Api";
 import useGetUser from "../api/calls/user/getUser";
 import LoginButton from "../components/Auth/LoginButton";
@@ -14,8 +15,10 @@ const Home = () => {
   const { data } = useGetUser();
 
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const handleClickOpen = () => {
-    setOpen(true);
+    //setOpen(true);
+    navigate("/server/3");
   };
 
   const handleClose = () => {

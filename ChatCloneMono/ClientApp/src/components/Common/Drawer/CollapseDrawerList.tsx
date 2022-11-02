@@ -14,10 +14,11 @@ interface CollapseDrawerListProps {
   isOpen: boolean;
   data: any;
   openHandler: () => void;
+  navigationHandler: (id: number) => void;
 }
 
 const CollapseDrawerList = (props: CollapseDrawerListProps) => {
-  const { isOpen, data, openHandler } = props;
+  const { isOpen, data, openHandler, navigationHandler } = props;
   return (
     <Box>
       <ListItem
@@ -34,7 +35,13 @@ const CollapseDrawerList = (props: CollapseDrawerListProps) => {
         <List component="li" key={data.Id} sx={{ maxHeight: "400px" }}>
           {data.Sheets.map((sheet) => {
             return (
-              <ListItem button key={sheet.Id}>
+              <ListItem
+                button
+                key={sheet.Id}
+                onClick={() => {
+                  navigationHandler(sheet.Id);
+                }}
+              >
                 <ListItemIcon>
                   {/* <InsertDriveFileTwoToneIcon /> */}
                 </ListItemIcon>

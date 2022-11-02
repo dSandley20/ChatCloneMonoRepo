@@ -23,7 +23,7 @@ namespace ChatCloneMono.Controllers
         [HttpGet]
         public IEnumerable<ServerListItemDto> GetServerList()
         {
-            return repository.GetServers();
+            return repository.GetServers(GetJwtUserId());
         }
 
         [HttpGet("{id}")]

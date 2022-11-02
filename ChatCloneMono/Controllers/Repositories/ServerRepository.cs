@@ -21,9 +21,10 @@ namespace ChatCloneMono.Controllers.Repositories
             {
                 throw new Exception("Creator Id does not match User Id");
             }
-            var sql = @"INSERT into servers (server_name, creator_id) VALUES (@ServerName, @CreatorId)";
-            connection.Execute(sql, new { ServerName = serverDetails.server_name, CreatorId = serverDetails.creator_id});
-
+            var sql = @"INSERT INTO servers (server_name, creator_id) VALUES (@ServerName, @CreatorId) RETURNING Id";
+            var insertId = connection.ExecuteScalar<Int32>(sql, new { ServerName = serverDetails.server_name, CreatorId = serverDetails.creator_id});
+            Console.WriteLine("insert Id: " + Convert.ToString(insertId));
+            connection.Execute("INSERT INTO user_servers (user_id, server_id) VALUES (@UserId, @ServerId )", new {UserId = serverDetails.creator_id, ServerId = insertId});
         }
 
         public ServerListItemDto GetServer(int serverId)
@@ -33,9 +34,9 @@ namespace ChatCloneMono.Controllers.Repositories
                 );
         }
 
-        public IEnumerable<ServerListItemDto> GetServers()
+        public IEnumerable<ServerListItemDto> GetServers(int userId)
         {
-            return connection.Query<ServerListItemDto>("Select id, server_name");
+            return connection.Query<ServerListItemDto>("Select s.id, s.server_name FROM user_servers us INNER JOIN servers s ON s.id = us.server_id WHERE us.user_id = @Id", new {Id = userId});
         }
     }
 }

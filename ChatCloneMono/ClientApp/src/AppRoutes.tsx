@@ -6,7 +6,7 @@ import Test from "./pages/Test";
 const AppRoutes = [
   {
     index: true,
-    path: "/home",
+    path: "/",
     element: <Home />,
   },
   {
@@ -17,8 +17,8 @@ const AppRoutes = [
   {
     index: true,
     path: "/server/:id",
-    element: <ServerPage />
-  }
+    element: <ServerPage />,
+  },
 ];
 
 export default AppRoutes;

@@ -4,26 +4,29 @@ import {
   Box,
   Drawer,
   IconButton,
-  makeStyles,
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "reactstrap";
 import { useUserContext } from "../../context/UserContext";
-import DrawerContent from "./Drawer/DrawerContent";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { toggleDrawer } from "../../redux/slices/appSlice";
+import NavigationDrawerContent from "./Drawer/NavigationDrawerContent";
 
 const NavBar = () => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const toggleDrawer = (value: boolean) => {
-    setDrawerOpen(value);
+  const isDrawerOpen = useAppSelector((state) => state.app.drawerOpen);
+  const dispatch = useAppDispatch();
+
+  const toggleDrawerState = (value: boolean) => {
+    dispatch(toggleDrawer(value));
   };
 
   const { getUserName } = useUserContext();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ zIndex: 1400, position: 'relative' }}>
+      <AppBar position="static" sx={{ zIndex: 1400, position: "relative" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -32,7 +35,7 @@ const NavBar = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
             onClick={() => {
-              toggleDrawer(!isDrawerOpen);
+              toggleDrawerState(!isDrawerOpen);
             }}
           >
             <MenuIcon />
@@ -49,17 +52,17 @@ const NavBar = () => {
         open={isDrawerOpen}
         hideBackdrop
         onClose={() => {
-          toggleDrawer(false);
+          toggleDrawerState(false);
         }}
-
       >
         <Toolbar />
-        <DrawerContent
+        <NavigationDrawerContent
           handlerFunction={() => {
-            //toggleDrawer(false);
+            //toggleDrawerState(false);
           }}
         />
       </Drawer>
+      <Typography>hello?</Typography>
     </Box>
   );
 };

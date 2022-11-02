@@ -60,13 +60,31 @@ namespace ChatCloneMono.Controllers.Repositories
 
         }
 
-        public ViewableUser GetViewableUser(int id)
+        public AuthedUser GetViewableUser(int id)
         {
-            return connection
-                .QueryFirstOrDefault<ViewableUser>(
-                    "Select id, first_name, last_name, email from users WHERE id = @Id",
-                    new{ Id = id}
-                );
+            var sql = @"SELECT u.id, u.first_name, u.last_name, u.email, s.id as server_id, s.server_name from users u INNER JOIN user_servers us ON u.id = us.user_id INNER JOIN servers s ON us.server_id = s.id ";
+
+            var authedUser = connection.Query<AuthedUser, TestServer[], AuthedUser>(sql, (user, servers) => {
+                user.servers = servers;
+                return user;
+            },
+            splitOn: "server_id"
+            );
+
+            if(authedUser != null)
+            {
+                return authedUser.First();
+            }
+
+            return null;
+
+
+
+            //return connection
+            //    .QueryFirstOrDefault<ViewableUser>(
+            //        "Select id, first_name, last_name, email from users WHERE id = @Id",
+            //        new{ Id = id}
+            //    );id
         }
 
         public ViewableUser UpdateExistingUser(CreateUpdateUser user, int id)

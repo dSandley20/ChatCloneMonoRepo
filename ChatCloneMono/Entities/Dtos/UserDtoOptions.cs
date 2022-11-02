@@ -9,6 +9,15 @@ namespace ChatCloneMono.Entities.Dtos
         public string email { get; set; }
     }
 
+    public class AuthedUser
+    {
+        public int Id { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string email { get; set; }
+        public TestServer[] servers { get; set; }
+    }
+
     public class CreateUpdateUser
     {
         public string? FirstName { get; set; }

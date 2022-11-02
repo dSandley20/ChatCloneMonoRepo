@@ -4,7 +4,7 @@ namespace ChatCloneMono.Controllers.RepositoryInterfaces
 {
     public interface IUserRepository
     {
-        public ViewableUser GetViewableUser(int id);
+        public AuthedUser GetViewableUser(int id);
         public string CreateNewUser(CreateUpdateUser user);
         public ViewableUser UpdateExistingUser(CreateUpdateUser user, int id);
     }

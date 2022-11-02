@@ -1,7 +1,6 @@
-import { Drawer, Grid, Toolbar } from "@mui/material";
-import React from "react";
-import { Container } from "reactstrap";
-import DrawerContent from "./Drawer/DrawerContent";
+import { Box } from "@mui/material";
+import React, { useMemo, useState } from "react";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import NavBar from "./NavBar";
 
 interface LayoutProps {
@@ -11,10 +10,22 @@ interface LayoutProps {
 const Layout = (props: LayoutProps) => {
   const { children } = props;
 
+  const drawerOpen = useAppSelector((state) => state.app.drawerOpen);
+  const [marginWidth, setMarginWidth] = useState("0px");
+
+  useMemo(() => {
+    setMarginWidth(drawerOpen ? "250px" : "0px");
+  }, [drawerOpen]);
+
   return (
     <div>
       <NavBar />
-      <Container>{children}</Container>
+      <Box
+        id="test"
+        sx={{ transition: "all .2s ease-in-out", marginLeft: marginWidth }}
+      >
+        {children}
+      </Box>
     </div>
   );
 };

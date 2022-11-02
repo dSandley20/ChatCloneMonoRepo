@@ -1,18 +1,17 @@
 import { Box, List } from "@mui/material";
 import React, { useState } from "react";
 import { useAppSelector } from "../../../hooks/reduxHooks";
-import CollapseDrawerList from "./CollapseDrawerList";
 
 interface DrawerContentProps {
   handlerFunction: (value: boolean) => void;
 }
 
-const DrawerContent = (props: DrawerContentProps) => {
+const UserDrawerContent = (props: DrawerContentProps) => {
   const { handlerFunction } = props;
 
   const [isServerListOpen, setServerListOpen] = useState(false);
   const [isMessageListOpen, setMessageListOpen] = useState(false);
-  const data = useAppSelector((state) => state.servers.servers)
+  const data = useAppSelector((state) => state.servers.servers);
 
   return (
     <Box
@@ -22,7 +21,7 @@ const DrawerContent = (props: DrawerContentProps) => {
       }}
     >
       <List>
-        <CollapseDrawerList
+        {/* <CollapseDrawerList
           openHandler={() => {
             setServerListOpen(!isServerListOpen);
           }}
@@ -37,10 +36,10 @@ const DrawerContent = (props: DrawerContentProps) => {
           isOpen={isMessageListOpen}
           key={data[1].Id}
           data={data[1]}
-        />
+        /> */}
       </List>
     </Box>
   );
 };
 
-export default DrawerContent;
+export default UserDrawerContent;
